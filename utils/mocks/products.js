@@ -1,3 +1,10 @@
-const products = [];
+const productsMock = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+];
 
-module.exports = products;
+module.exports = productsMock;

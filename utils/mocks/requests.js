@@ -1,3 +1,10 @@
-const requests = [];
+const requestsMock = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+];
 
-module.exports = requests;
+module.exports = requestsMock;

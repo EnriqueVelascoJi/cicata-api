@@ -1,10 +1,13 @@
 const express = require('express');
+const debug = require('debug')('app:server');
 const cors = require('cors');
 const app = express();
 const { config } = require('./config');
-const productsApi = require('./routes/Products');
-const requestsApi = require('./routes/Requests');
-const usersApi = require('./routes/User');
+const { sequelize } = require('./database/');
+
+const productsApi = require('./routes/products');
+const requestsApi = require('./routes/requests');
+const usersApi = require('./routes/users');
 
 const notFounHandler = require('./utils/middleware/notFoundHandler');
 app.use(cors());
@@ -18,4 +21,8 @@ usersApi(app);
 // Catch 404
 app.use(notFounHandler);
 
-app.listen(config.port, () => console.log(`Server on port ${config.port}`));
+sequelize.sync().then(() => {
+  debug('Tablas creadas');
+});
+
+app.listen(config.port, () => debug(`Server on port ${config.port}`));
