@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const { config } = require('./config');
 const productsApi = require('./routes/Products');
@@ -6,7 +7,7 @@ const requestsApi = require('./routes/Requests');
 const usersApi = require('./routes/User');
 
 const notFounHandler = require('./utils/middleware/notFoundHandler');
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
